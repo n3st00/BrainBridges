@@ -1,0 +1,68 @@
+﻿<Page
+    x:Class="BrainBridges.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BrainBridges"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <!-- MenuBar declaration -->
+        <MenuBar VerticalAlignment="Top">
+            <MenuBarItem Title="File">
+                <MenuFlyoutItem Text="New"/>
+                <MenuFlyoutItem Text="Open"/>
+                <MenuFlyoutItem Text="Save"/>
+            </MenuBarItem>
+            <MenuBarItem Title="Edit">
+                <MenuFlyoutItem Text="Undo"/>
+                <MenuFlyoutItem Text="Redo"/>
+                <!-- More items can be added here -->
+            </MenuBarItem>
+            <MenuBarItem Title="View">
+                <!-- View menu items here -->
+            </MenuBarItem>
+        </MenuBar>
+
+        <muxc:TabView x:Name="TabView_MP"
+                      Margin="20,40,0,0"
+                      AddTabButtonClick="TabView_MP_AddTabButtonClick"
+                      TabCloseRequested="TabView_MP_TabCloseRequested">
+            <muxc:TabViewItem Header="Tab 1">
+                <muxc:TabViewItem.IconSource>
+                    <muxc:SymbolIconSource Symbol="Emoji"/>
+                </muxc:TabViewItem.IconSource>
+                <ListView x:Name="ListView_MP"
+                          Background="{StaticResource ApplicationPageBackgroundThemeBrush}"
+                          ItemsSource="{Binding Source={StaticResource itemsViewSource}}"
+                          SelectionChanged="ListView_MP_SelectionChanged">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Height="110" Margin="6">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}" Width="110" Height="110">
+                                    <Image Source="{Binding Image}" Stretch="UniformToFill"/>
+                                </Border>
+                                <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="10,0,0,0">
+                                    <TextBlock Text="{Binding Title}" Style="{StaticResource TitleTextStyle}" TextWrapping="NoWrap"/>
+                                    <TextBlock Text="{Binding Subtitle}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap"/>
+                                    <TextBlock Text="{Binding Description}" Style="{StaticResource BodyTextStyle}" MaxHeight="60"/>
+                                </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </muxc:TabViewItem>
+            <muxc:TabViewItem Header="Tab 2">
+                
+            </muxc:TabViewItem>
+        </muxc:TabView>
+    </Grid>
+</Page>
