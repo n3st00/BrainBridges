@@ -40,7 +40,29 @@ namespace BrainBridges
             sender.TabItems.Remove(args.Tab);
         }
 
-        private void ListView_MP_SelectionChanged(object sender, SelectionChangedEventArgs e)
+       
+
+        private async void JsonButton_Click(object sender, RoutedEventArgs e)
+        {
+            string fileName = "data.json"; // json file test
+            PointStr point = new PointStr
+            {
+                name = "Johnnn",
+                index = "index1",
+                description = "description",
+                connections = new List<string>{"connection1", "connection2"}
+            };
+           
+            object newData = new { Name = "Janggg", Age = 15, newParam = 34, someother = "dasdasd"}; //new data test
+            /*            await JsonFileHelper.WriteToJsonFile(fileName, newData);
+             *                        await JsonFileHelper.WriteObjectToJson(fileName, point);
+            */
+            /*await JsonFileHelper.WriteObjectToJson(fileName, point);
+            await JsonFileHelper.ReadFromJsonFile(fileName)*/;
+            await JsonFileHelper.ClearJsonFile(fileName);
+        }
+
+        private void MenuFlyoutItem_Click(object sender, RoutedEventArgs e)
         {
 
         }
