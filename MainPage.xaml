@@ -8,14 +8,124 @@
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    
 
+    <Page.Resources>
+        <!-- Gradient Brush-->
+        <LinearGradientBrush x:Key="GradientBrush" StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="LightBlue" Offset="0" />
+            <GradientStop Color="DarkBlue" Offset="1" />
+        </LinearGradientBrush>
+        <!-- DATA TEMPLATE FOR NEW FILE MENU-->
+        <DataTemplate x:Key="NewFileTemplate">
+            <ScrollViewer x:Name="ScrollViewer_CF"
+                          Height ="1600"
+                          Background="{StaticResource GradientBrush}"
+                          HorizontalAlignment="Stretch"
+                          VerticalAlignment="Top">
+                <StackPanel x:Name="TextBlocks">
+                    <TextBlock Name="CrTextBlock"
+                        Text="Create New Project"
+                        Style="{StaticResource HeaderTextBlockStyle}"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Top"/>
+                    <TextBlock Text="Name: "
+                               Style="{StaticResource SubtitleTextBlockStyle}"
+                               Margin="80, 50,0,0"/>
+                    <TextBox Name="NameTextBox"
+                             Width="180"
+                             
+                             Margin="160,-27,0,0"
+                             HorizontalAlignment="Left"/>
+                    <TextBlock Text="Don't use any of the following signs:
+                               space, dot, komma, slash or quotes."
+                               Name="CharactersTextBlock"
+                               Visibility="Collapsed"
+                               Style="{StaticResource BodyTextBlockStyle}"
+                               FontSize="10"
+                               Width="250"
+                               HorizontalAlignment="Left"
+                               Margin="140,15,0,0"/>
+
+                    <TextBlock Text="Description(optional):"
+                               Style="{StaticResource SubtitleTextBlockStyle}"
+                               FontSize="15"
+                               Margin="80,40,0,0"/>
+                    <TextBox x:Name="DescriptionTextBox"
+                             Width="550"
+                             Margin="250,-27,0,0"
+                             HorizontalAlignment="Left"/>
+                    <TextBlock Text="Max. length is 300 characters."
+                               Name="LengthTextBlock"
+                               Visibility="Collapsed"
+                               Style="{StaticResource BodyTextBlockStyle}"
+                               FontSize="10"
+                               Width="250"
+                               HorizontalAlignment="Left"
+                               Margin="140,15,0,0"/>
+                    <Button x:Name="CreateNewProjectButton"
+                            HorizontalAlignment="Center"
+                            Width="150"
+                            Height="30"
+                            Content="Create"
+                            Margin="0,50,0,0"
+                            Style="{StaticResource AccentButtonStyle}"
+                            Click="CreateNewProjectButton_Click"/>
+                    <!-- TextBlock to make scrolling possible-->
+
+                    <TextBlock Text="hehehe im down here"
+                        Margin="0,1300,0,0"/>
+                    <TextBlock Text="whatcha doin here?"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Bottom"
+                            Margin="0,0,0,0"/>
+                </StackPanel>
+            </ScrollViewer>
+        </DataTemplate>
+        
+        <!-- BLANK NEW PAGE TEMPLATE -->
+        <DataTemplate x:Key="NewPageTemplate">
+            <ScrollViewer Name="ScrollViewer_COF">
+                <StackPanel>
+                    <TextBlock Text="Blank Page"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Top"
+                        Style="{StaticResource HeaderTextBlockStyle}"/>
+                    <TextBlock Text="This page doesn't contain any project. Please select one of the options below to start:"
+                               Style="{StaticResource BodyTextBlockStyle}"
+                               Width="500"
+                               FontSize="15"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Top"
+                               Margin="0,80,0,0"/>
+                    <HyperlinkButton Content="Create A New Project"
+                                     HorizontalAlignment="Center"
+                                     VerticalAlignment="Top"
+                                     Margin="0,30,0,0"/>
+                    <HyperlinkButton Content="Open Already Existing Project"
+                                     HorizontalAlignment="Center"
+                                     VerticalAlignment="Top"
+                                     Margin="0,30,0,0"/>
+                    <HyperlinkButton Content="Import a project"
+                                     HorizontalAlignment="Center"
+                                     VerticalAlignment="Top"
+                                     Margin="0,30,0,0"/>
+                    <!-- A TextBlock to make scrolling possible-->
+                    <TextBlock HorizontalAlignment="Center"
+                               VerticalAlignment="Bottom"
+                               Margin="0,550,0,0"/>
+                </StackPanel>
+                
+            </ScrollViewer>
+        </DataTemplate>
+    </Page.Resources>
+    
     <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
         <!-- MenuBar declaration -->
         <MenuBar VerticalAlignment="Top">
             <MenuBarItem Title="File">
                 <MenuFlyoutItem Text="New"
-                                Click="MenuFlyoutItem_Click"/>
+                                Name="NewFileButton"
+                                Click="MenuNewItem_Click"/>
                 <MenuFlyoutItem Text="Open"/>
                 <MenuFlyoutItem Text="Save"/>
             </MenuBarItem>
@@ -47,5 +157,8 @@
                         VerticalAlignment="Center"/>
             </muxc:TabViewItem>
         </muxc:TabView>
+            
+            
+            
     </Grid>
 </Page>
